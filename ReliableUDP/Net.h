@@ -15,6 +15,8 @@
 #define PLATFORM_MAC      2
 #define PLATFORM_UNIX     3
 
+
+
 #if defined(_WIN32)
 #define PLATFORM PLATFORM_WINDOWS
 #elif defined(__APPLE__)
@@ -53,6 +55,11 @@ namespace net
 	// platform independent wait for n seconds
 
 #if PLATFORM == PLATFORM_WINDOWS
+
+
+// Constant Declaration
+
+#define PacketSizeHack 384			//384 = (PacketSize) + 128
 
 	void wait(float seconds)
 	{
@@ -202,7 +209,7 @@ namespace net
 			address.sin_addr.s_addr = INADDR_ANY;
 			address.sin_port = htons((unsigned short)port);
 
-			if (bind(socket, (const sockaddr*)&address, sizeof(sockaddr_in)) < 0)
+			if (::bind(socket, (const sockaddr*)&address, sizeof(sockaddr_in)) < 0)
 			{
 				printf("failed to bind socket\n");
 				Close();
@@ -254,7 +261,8 @@ namespace net
 			return socket != 0;
 		}
 
-		bool Send(const Address& destination, const void* data, int size)
+		bool Send(const Address& destination, const void* data, int size
+		)
 		{
 			assert(data);
 			assert(size > 0);
@@ -443,19 +451,19 @@ namespace net
 			assert(running);
 			if (address.GetAddress() == 0)
 				return false;
-			unsigned char packet[size + 4];
+			unsigned char packet[PacketSizeHack + 4];
 			packet[0] = (unsigned char)(protocolId >> 24);
 			packet[1] = (unsigned char)((protocolId >> 16) & 0xFF);
 			packet[2] = (unsigned char)((protocolId >> 8) & 0xFF);
 			packet[3] = (unsigned char)((protocolId) & 0xFF);
-			std::memcpy(&packet[4], data, size);
+			std::memcpy(&packet[4], data, PacketSizeHack);
 			return socket.Send(address, packet, size + 4);
 		}
 
 		virtual int ReceivePacket(unsigned char data[], int size)
 		{
 			assert(running);
-			unsigned char packet[size + 4];
+			unsigned char packet[PacketSizeHack + 4];
 			Address sender;
 			int bytes_read = socket.Receive(sender, packet, size + 4);
 			if (bytes_read == 0)
@@ -969,7 +977,7 @@ namespace net
 			}
 #endif
 			const int header = 12;
-			unsigned char packet[header + size];
+			unsigned char packet[header + PacketSizeHack];
 			unsigned int seq = reliabilitySystem.GetLocalSequence();
 			unsigned int ack = reliabilitySystem.GetRemoteSequence();
 			unsigned int ack_bits = reliabilitySystem.GenerateAckBits();
@@ -986,7 +994,7 @@ namespace net
 			const int header = 12;
 			if (size <= header)
 				return false;
-			unsigned char packet[header + size];
+			unsigned char packet[header + PacketSizeHack];
 			int received_bytes = Connection::ReceivePacket(packet, size + header);
 			if (received_bytes == 0)
 				return false;
