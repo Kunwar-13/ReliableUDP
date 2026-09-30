@@ -167,6 +167,7 @@ int main(int argc, char* argv[])
 	bool connected = false;
 	float sendAccumulator = 0.0f;
 	float statsAccumulator = 0.0f;
+	int packetCounter = 0;
 
 	FlowControl flowControl;
 
@@ -207,8 +208,15 @@ int main(int argc, char* argv[])
 		while (sendAccumulator > 1.0f / sendRate)
 		{
 			unsigned char packet[PacketSize];
-			memset(packet, 0, sizeof(packet));
+			memset(packet, 0, sizeof(packet));                 // clear first
+
+			char message[64];
+			sprintf_s(message, sizeof(message), "Hello World <<%d>>", packetCounter);
+			memcpy(packet, message, strlen(message) + 1);       // then write the string in
+
 			connection.SendPacket(packet, sizeof(packet));
+
+			packetCounter++;                                    // use a persistent counter
 			sendAccumulator -= 1.0f / sendRate;
 		}
 
@@ -217,7 +225,10 @@ int main(int argc, char* argv[])
 			unsigned char packet[256];
 			int bytes_read = connection.ReceivePacket(packet, sizeof(packet));
 			if (bytes_read == 0)
-				break;
+				break;                                           // check FIRST, before printing
+
+			packet[bytes_read < 256 ? bytes_read : 255] = '\0';  // ensure null-terminated
+			printf("received packet: %s\n", packet);
 		}
 
 		// show packets that were acked this frame
