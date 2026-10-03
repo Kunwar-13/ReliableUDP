@@ -16,8 +16,6 @@
 using namespace std;
 using namespace net;
 
-const int ServerPort = 30000;
-const int ClientPort = 30001;
 const int ProtocolId = 0x11223344;
 const float DeltaTime = 1.0f / 30.0f;
 const float SendRate = 1.0f / 30.0f;
@@ -137,7 +135,7 @@ int main(int argc, char* argv[])
 		if (sscanf(argv[1], "%d.%d.%d.%d", &a, &b, &c, &d))
 		{
 			mode = Client;
-			address = Address(a, b, c, d, ServerPort);
+			
 		}
 	}
 
@@ -151,7 +149,7 @@ int main(int argc, char* argv[])
 
 	ReliableConnection connection(ProtocolId, TimeOut);
 
-	const int port = mode == Server ? ServerPort : ClientPort;
+	
 
 	if (!connection.Start(port))
 	{
@@ -167,7 +165,6 @@ int main(int argc, char* argv[])
 	bool connected = false;
 	float sendAccumulator = 0.0f;
 	float statsAccumulator = 0.0f;
-	int packetCounter = 0;
 
 	FlowControl flowControl;
 
@@ -208,15 +205,7 @@ int main(int argc, char* argv[])
 		while (sendAccumulator > 1.0f / sendRate)
 		{
 			unsigned char packet[PacketSize];
-			memset(packet, 0, sizeof(packet));                 // clear first
-
-			char message[64];
-			sprintf_s(message, sizeof(message), "Hello World <<%d>>", packetCounter);
-			memcpy(packet, message, strlen(message) + 1);       // then write the string in
-
-			connection.SendPacket(packet, sizeof(packet));
-
-			packetCounter++;                                    // use a persistent counter
+			                                    // use a persistent counter
 			sendAccumulator -= 1.0f / sendRate;
 		}
 
@@ -227,8 +216,6 @@ int main(int argc, char* argv[])
 			if (bytes_read == 0)
 				break;                                           // check FIRST, before printing
 
-			packet[bytes_read < 256 ? bytes_read : 255] = '\0';  // ensure null-terminated
-			printf("received packet: %s\n", packet);
 		}
 
 		// show packets that were acked this frame
