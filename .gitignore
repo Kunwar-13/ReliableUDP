@@ -1,0 +1,16 @@
+.vs/
+x64/
+Debug/
+Release/
+*.user
+*.bundle
+*.ipch
+*.db
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.tlog
+*.log
+*.part
+*.corrupt
