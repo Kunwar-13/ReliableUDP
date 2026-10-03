@@ -1,6 +1,8 @@
 #ifndef OPTIONS_H
 #define OPTIONS_H
 
+#include <cstdio>
+#include <cstdlib>
 #include <string>
 #include "TransferConstants.h"
 

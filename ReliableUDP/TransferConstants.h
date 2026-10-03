@@ -7,6 +7,9 @@
 namespace ReliableUDP 
 {
 	const int      Default_Burst = 8;
+	const int	   Max_Burst = 64;
+	const int	   Max_port = 65534;
+	const int	   Min_port = 1;
 	const char* const Current_Folder = ".";
 
 }
