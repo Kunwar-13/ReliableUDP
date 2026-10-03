@@ -4,10 +4,10 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace a1 
+namespace ReliableUDP 
 {
-
-
+	const int      Default_Burst = 8;
+	const char* const Current_Folder = ".";
 
 }
 
