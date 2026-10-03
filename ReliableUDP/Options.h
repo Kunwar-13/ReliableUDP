@@ -25,6 +25,12 @@ namespace ReliableUDP
 
 	};
 
+	void printUsage();
+	bool parsePort(const char* text, int& port);
+	bool parseIPv4(const char* text, int& first, int& second, int& third, int& fourth);
+	bool applyValueOption(const std::string& name, const char* value, Options& options);
+	bool parseOptions(int argc, char* argv[], Options& options);
+
 }
 
 #endif // !OPTIONS_H
