@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <string>
+#include <chrono>
 #include "Net.h"
 
 namespace ReliableUDP 
@@ -16,6 +17,8 @@ namespace ReliableUDP
 	const int	   Min_Drop_Packet = 2;
 	const int	   Min_Port = 1;
 	const int	   Bites_Per_Byte = 8;
+	const double   Bits_Per_Megabit = 1000000.0;
+	const double   Bytes_Per_Kilobyte = 1024.0;
 	const uint32_t Byte_Mask = 0xFFu;
 	const int	   U16_Bytes = 2;
 	const int	   U32_Bytes = 4;
