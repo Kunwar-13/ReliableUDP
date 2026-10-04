@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="ByteCode.h" />
     <ClInclude Include="Chunking.h" />
+    <ClInclude Include="Crc32.h" />
     <ClInclude Include="Net.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Protocol.h" />
