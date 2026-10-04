@@ -6,7 +6,7 @@
 namespace ReliableUDP 
 {
 
-	void putUnsinged(unsigned char* destination, uint32_t value);
+	void putUnsinged(unsigned char* destination, uint32_t value, int byteCount);
 	uint64_t getUnsigned(const unsigned char* source, int byteCount);
 
 	void putU16(unsigned char* destination, uint32_t value);
