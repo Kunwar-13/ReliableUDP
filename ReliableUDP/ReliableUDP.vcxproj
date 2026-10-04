@@ -138,6 +138,7 @@
     <ClInclude Include="Net.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Protocol.h" />
+    <ClInclude Include="Timing.h" />
     <ClInclude Include="TransferConstants.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
