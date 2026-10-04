@@ -8,6 +8,7 @@
 #include <string>
 #include <chrono>
 #include <fstream>
+#include <deque>
 #include "Net.h"
 
 namespace ReliableUDP 

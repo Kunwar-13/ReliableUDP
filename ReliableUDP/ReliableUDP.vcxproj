@@ -139,6 +139,7 @@
     <ClInclude Include="ByteCode.h" />
     <ClInclude Include="Chunking.h" />
     <ClInclude Include="FileNames.h" />
+    <ClInclude Include="FileTransfer.h" />
     <ClInclude Include="Net.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Protocol.h" />
