@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ByteCode.cpp" />
     <ClCompile Include="Chunking.cpp" />
+    <ClCompile Include="FileNames.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Protocol.cpp" />
     <ClCompile Include="ReliableUDP.cpp" />

@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <string>
 #include <chrono>
+#include <fstream>
 #include "Net.h"
 
 namespace ReliableUDP 
@@ -24,6 +25,10 @@ namespace ReliableUDP
 	const unsigned char Type_Nudge = 'A';
 	const unsigned char Type_Result = 'R';
 	const unsigned char Type_Fin = 'Z';
+
+	const int Status_Ok = 0;
+	const int Status_Crc_Mismatch = 1;
+	const int Status_Size_Mismatch = 2;
 
 	const int Type_Offset = 0;
 	const int Zero_Offset = 1;
@@ -49,6 +54,8 @@ namespace ReliableUDP
 	const int	   Max_Port = 65534;
 	const int	   Min_Drop_Packet = 2;
 	const int	   Min_Port = 1;
+	const char* const Partial_Suffix = ".part";
+	const char* const Corrupt_Suffix = ".corrupt";
 	const int	   Bites_Per_Byte = 8;
 	const double   Bits_Per_Megabit = 1000000.0;
 	const double   Bytes_Per_Kilobyte = 1024.0;
@@ -58,6 +65,7 @@ namespace ReliableUDP
 	const int	   U64_Bytes = 8;
 	const int	   Ipv4_Part_Count = 4;
 	const char* const Current_Folder = ".";
+	const char* const Default_File_Name = "received_file"
 
 }
 
