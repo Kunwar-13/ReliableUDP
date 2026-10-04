@@ -66,7 +66,14 @@ namespace ReliableUDP
 	const int	   U64_Bytes = 8;
 	const int	   Ipv4_Part_Count = 4;
 	const char* const Current_Folder = ".";
-	const char* const Default_File_Name = "received_file"
+	const char* const Default_File_Name = "received_file";
+
+	// CRC-32 constants
+	const uint32_t Crc_Polynomial = 0xEDB88320u; // reflected IEEE 802.3 polynomial
+	const uint32_t Crc_Mask = 0xFFFFFFFFu;       // initial and final XOR value
+	const uint32_t Crc_Table_Size = 256;
+	const uint32_t Crc_Check_Value = 0xCBF43926u; // CRC-32 of the text "123456789"
+	const size_t   Crc_Block_Size = 64 * 1024;    // bytes read per block when hashing a file
 
 }
 

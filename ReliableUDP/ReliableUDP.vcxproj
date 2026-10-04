@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ByteCode.cpp" />
     <ClCompile Include="Chunking.cpp" />
+    <ClCompile Include="Crc32.cpp" />
     <ClCompile Include="FileNames.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Protocol.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Chunking.h" />
     <ClInclude Include="FileNames.h" />
     <ClInclude Include="FileTransfer.h" />
+    <ClInclude Include="Crc32.h" />
     <ClInclude Include="Net.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Protocol.h" />
