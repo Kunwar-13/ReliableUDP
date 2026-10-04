@@ -2,6 +2,8 @@
 #define PROTOCOL_H
 
 #include "TransferConstants.h"
+#include "ByteCode.h"
+#include "Chunking.h"
 
 struct MessageInfo {
 
