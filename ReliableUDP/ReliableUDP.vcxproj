@@ -131,6 +131,7 @@
     <ClCompile Include="ReliableUDP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ByteCode.h" />
     <ClInclude Include="Net.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="TransferConstants.h" />

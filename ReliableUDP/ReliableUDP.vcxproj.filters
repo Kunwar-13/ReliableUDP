@@ -32,5 +32,8 @@
     <ClInclude Include="TransferConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ByteCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
