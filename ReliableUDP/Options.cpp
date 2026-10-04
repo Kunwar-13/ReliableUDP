@@ -105,7 +105,8 @@ namespace ReliableUDP
 			fourth = parts[3];
 
 		}
-
+		
+		return valid;
 	}
 
 	bool applyValueOption(const std::string& name, const char* value, Options& options) {
@@ -248,6 +249,6 @@ namespace ReliableUDP
 		return usable;
 	}
 
-	}
+	
 
 }
