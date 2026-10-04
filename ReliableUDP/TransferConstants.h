@@ -20,6 +20,7 @@ namespace ReliableUDP
 	const int	   U32_Bytes = 4;
 	const int	   U64_Bytes = 8;
 	const char* const Current_Folder = ".";
+	const int    Chunk_Size = 240;
 
 }
 
