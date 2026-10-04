@@ -128,13 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ByteCode.cpp" />
+    <ClCompile Include="Chunking.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="ReliableUDP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ByteCode.h" />
+    <ClInclude Include="Chunking.h" />
     <ClInclude Include="Net.h" />
     <ClInclude Include="Options.h" />
+    <ClInclude Include="Protocol.h" />
     <ClInclude Include="TransferConstants.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

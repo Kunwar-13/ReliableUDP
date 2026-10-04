@@ -22,6 +22,7 @@ namespace ReliableUDP
 	const int	   U64_Bytes = 8;
 	const int	   Ipv4_Part_Count = 4;
 	const char* const Current_Folder = ".";
+	const int    Chunk_Size = 240;
 
 }
 
