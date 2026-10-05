@@ -43,7 +43,7 @@ namespace ReliableUDP
 
 	void putU64(unsigned char* destination, uint64_t value) {
 
-		putUnsinged(destination, value, U32_Bytes);
+		putUnsinged(destination, value, U64_Bytes);
 
 	}
 
