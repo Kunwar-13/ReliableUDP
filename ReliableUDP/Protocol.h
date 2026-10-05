@@ -5,6 +5,8 @@
 #include "ByteCode.h"
 #include "Chunking.h"
 
+namespace ReliableUDP
+{
 struct MessageInfo {
 
 	uint32_t NameLength;
@@ -42,6 +44,8 @@ int packResult(unsigned char* packet, const ResultMessage& result);
 bool unpackResult(const unsigned char* packet, int length, ResultMessage& result);
 
 int packSimple(unsigned char* packet, unsigned char type);
+
+}
 
 #endif // !PROTOCOL_H
 
