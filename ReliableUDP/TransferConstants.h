@@ -18,6 +18,8 @@ namespace ReliableUDP
 	const int      Max_Name_Length = 200;
 	const int      Data_Header = 8;
 	const int      Chunk_Size = 240;
+	const uint64_t Max_File_Size = 2147483648ULL;
+	const int      Ack_Nudge_Every = 8;           // receiver sends an 'A' every N data packets
 
 	const unsigned char Type_Info = 'F';
 	const unsigned char Type_Accept = 'K';
@@ -30,6 +32,20 @@ namespace ReliableUDP
 	const int Status_Ok = 0;
 	const int Status_Crc_Mismatch = 1;
 	const int Status_Size_Mismatch = 2;
+
+	const double Result_Resend_Interval = 0.25;   
+	const double Result_Give_Up_Time = 5.0;        
+	const double Progress_Interval = 1.0;        
+	const double Sequence_Forget_Time = 3.0;      
+	const double Fin_Settle_Time = 0.3;
+
+	const int Reject_Cannot_Create = 1;
+	const int Reject_Bad_Info = 2;
+	const int Reject_Too_Big = 3;
+	const int Reject_Write_Error = 4;
+
+	const int Exit_Transfer_Failed = 2;
+	const int Exit_Verify_Failed = 3;
 
 	const int Type_Offset = 0;
 	const int Zero_Offset = 1;

@@ -4,6 +4,11 @@
 #include "Options.h"
 #include "Protocol.h"
 #include "TransferConstants.h"
+#include "Chunking.h"
+#include "Crc32.h"
+#include "FileNames.h"
+#include "Timing.h"
+
 
 namespace ReliableUDP
 {

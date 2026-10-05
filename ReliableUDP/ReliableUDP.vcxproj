@@ -131,6 +131,7 @@
     <ClCompile Include="Chunking.cpp" />
     <ClCompile Include="Crc32.cpp" />
     <ClCompile Include="FileNames.cpp" />
+    <ClCompile Include="FileTransferReciever.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Protocol.cpp" />
     <ClCompile Include="ReliableUDP.cpp" />
