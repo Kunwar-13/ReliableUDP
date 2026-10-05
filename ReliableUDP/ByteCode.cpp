@@ -7,7 +7,7 @@ namespace ReliableUDP
 
 		for (int i = 0; i < byteCount; ++i) {
 
-			const int shift = (byteCount - 1 - i) * Bites_Per_Byte;
+			const int shift = (byteCount - 1 - i) * Bits_Per_Byte;
 
 			destination[i] = static_cast<unsigned char>((value >> shift) & Byte_Mask);
 
@@ -21,7 +21,7 @@ namespace ReliableUDP
 
 		for (int i = 0; i < byteCount; ++i) {
 
-			value = (value << Bites_Per_Byte) | source[i];
+			value = (value << Bits_Per_Byte) | source[i];
 
 		}
 

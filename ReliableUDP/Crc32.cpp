@@ -9,7 +9,7 @@ namespace ReliableUDP {
 
 		for (size_t index = 0; index < length; ++index)
 		{
-			workingCrc = table[(workingCrc ^ data[index]) & Byte_Mask] ^ (workingCrc >> Bites_Per_Byte);
+			workingCrc = table[(workingCrc ^ data[index]) & Byte_Mask] ^ (workingCrc >> Bits_Per_Byte);
 		}
 
 		return workingCrc ^ Crc_Mask;
@@ -33,7 +33,7 @@ namespace ReliableUDP {
 			{
 				uint32_t value = entry;
 
-				for (int bit = 0; bit < Bites_Per_Byte; ++bit)
+				for (int bit = 0; bit < Bits_Per_Byte; ++bit)
 				{
 					value = (value & 1u) ? (Crc_Polynomial ^ (value >> 1)) : (value >> 1);
 				}

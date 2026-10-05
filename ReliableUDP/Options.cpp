@@ -136,6 +136,8 @@ namespace ReliableUDP
 
 					printf("-b must be between 1 and %d\n", Max_Burst);
 
+					accepted = false;
+
 				}
 				else
 				{

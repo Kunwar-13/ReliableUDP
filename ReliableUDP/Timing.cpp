@@ -12,7 +12,7 @@ namespace ReliableUDP {
 
 	double calculateMegabitsPerSecond(uint64_t bytes, double seconds)
 	{
-		return static_cast<double>(bytes) * Bites_Per_Byte / seconds / Bits_Per_Megabit;
+		return static_cast<double>(bytes) * Bits_Per_Byte / seconds / Bits_Per_Megabit;
 	}
 
 	void printTiming(uint64_t bytes, double seconds)

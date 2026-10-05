@@ -87,7 +87,7 @@ namespace ReliableUDP
 	const int	   Min_Port = 1;
 	const char* const Partial_Suffix = ".part";
 	const char* const Corrupt_Suffix = ".corrupt";
-	const int	   Bites_Per_Byte = 8;
+	const int	   Bits_Per_Byte = 8;
 	const double   Bits_Per_Megabit = 1000000.0;
 	const double   Bytes_Per_Kilobyte = 1024.0;
 	const uint32_t Byte_Mask = 0xFFu;

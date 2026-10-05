@@ -10,14 +10,13 @@
 #include <vector>
 
 #include "Net.h"
+#include "FileTransfer.h"
 
 //#define SHOW_ACKS
 
 using namespace std;
 using namespace net;
 
-const int ServerPort = 30000;
-const int ClientPort = 30001;
 const int ProtocolId = 0x11223344;
 const float DeltaTime = 1.0f / 30.0f;
 const float SendRate = 1.0f / 30.0f;
@@ -129,16 +128,20 @@ int main(int argc, char* argv[])
 	Mode mode = Server;
 	Address address;
 
-	if (argc >= 2)
+	ReliableUDP::Options transferOptions;
+	if (!ReliableUDP::parseOptions(argc, argv, transferOptions))
 	{
-		int a, b, c, d;
+		return transferOptions.Help ? 0 : 1;
+	}
 
-		#pragma warning(suppress : 4996)
-		if (sscanf(argv[1], "%d.%d.%d.%d", &a, &b, &c, &d))
-		{
-			mode = Client;
-			
-		}
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	int d = 0;
+	if (argc >= 2 && ReliableUDP::parseIPv4(argv[1], a, b, c, d))
+	{
+		mode = Client;
+		address = Address(a, b, c, d, transferOptions.Port);
 	}
 
 	// initialize
@@ -151,7 +154,14 @@ int main(int argc, char* argv[])
 
 	ReliableConnection connection(ProtocolId, TimeOut);
 
-	const int port = mode == Server ? ServerPort : ClientPort;
+	ReliableUDP::FileTransfer transfer(connection, transferOptions);
+	if (!transfer.Prepare())
+	{
+		ShutdownSockets();
+		return 1;
+	}
+
+	const int port = mode == Server ? transferOptions.Port : transferOptions.Port + 1;
 
 	if (!connection.Start(port))
 	{
@@ -200,6 +210,11 @@ int main(int argc, char* argv[])
 			break;
 		}
 
+		transfer.Update();
+		if (transfer.IsFinished())
+		{
+			break;
+		}
 		// send and receive packets
 
 		sendAccumulator += DeltaTime;
@@ -219,6 +234,8 @@ int main(int argc, char* argv[])
 				break;                                           // check FIRST, before printing
 
 		}
+
+		transfer.ProcessAcks();
 
 		// show packets that were acked this frame
 
@@ -263,6 +280,12 @@ int main(int argc, char* argv[])
 		}
 
 		net::wait(DeltaTime);
+	}
+
+	if (transfer.ExitCode() != 0)
+	{
+		ShutdownSockets();
+		return transfer.ExitCode();
 	}
 
 	ShutdownSockets();

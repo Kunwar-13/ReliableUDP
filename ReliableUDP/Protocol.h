@@ -13,7 +13,7 @@ struct MessageInfo {
 	uint64_t FileSize;
 	uint32_t TotalChunks;
 	uint32_t FileCrc;
-	uint32_t ChunckSize;
+	uint32_t ChunkSize;
 
 };
 

@@ -31,7 +31,7 @@ namespace ReliableUDP
 			info.FileSize = getU64(packet + Info_File_Size_Offset);
 			info.TotalChunks = getU32(packet + Info_Total_Chunks_Offset);
 			info.FileCrc = getU32(packet + Info_Crc_Offset);
-			info.ChunckSize = getU16(packet + Info_Chunk_Size_Offset);
+			info.ChunkSize = getU16(packet + Info_Chunk_Size_Offset);
 		}
 
 		return longEnough;
@@ -44,7 +44,7 @@ namespace ReliableUDP
 
 		return nameLength > 0 && nameLength <= Max_Name_Length &&
 			Info_Name_Offset + nameLength <= packetLength &&
-			static_cast<int>(info.ChunckSize) == Chunk_Size &&
+			static_cast<int>(info.ChunkSize) == Chunk_Size &&
 			static_cast<uint64_t>(info.TotalChunks) == calculateTotalChunks(info.FileSize);
 	}
 
