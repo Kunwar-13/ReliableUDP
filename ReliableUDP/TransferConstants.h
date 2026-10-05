@@ -8,6 +8,7 @@
 #include <string>
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <deque>
 #include "Net.h"
 
@@ -19,7 +20,14 @@ namespace ReliableUDP
 	const int      Data_Header = 8;
 	const int      Chunk_Size = 240;
 	const uint64_t Max_File_Size = 2147483648ULL;
+	const double   Info_Resend_Interval = 0.5;
+	const double   Response_Timeout = 30.0;
 	const int      Ack_Nudge_Every = 8;           // receiver sends an 'A' every N data packets
+	const int      Fin_Count = 3;
+	const unsigned char Corrupt_Bit_Mask = 0x01;
+	const uint32_t Window_Chunks = 256;
+	const double   Retransmit_Timeout = 0.5;
+
 
 	const unsigned char Type_Info = 'F';
 	const unsigned char Type_Accept = 'K';
@@ -68,6 +76,12 @@ namespace ReliableUDP
 	const int Result_Crc_Offset = 4;
 	const int Result_Bytes_Offset = 8;
 	const int Result_Length = 16;
+
+	const unsigned char Chunk_Unsent = 0;
+	const unsigned char Chunk_In_Flight = 1;
+	const unsigned char Chunk_Acked = 2;
+
+	const int  Quote_Characters_Length = 2;
 	const int	   Max_Port = 65534;
 	const int	   Min_Drop_Packet = 2;
 	const int	   Min_Port = 1;
